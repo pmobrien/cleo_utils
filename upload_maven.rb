@@ -5,16 +5,16 @@ $url = nil
 $version = nil
 
 def do_mvn(file_path)
-	system(
-		"mvn deploy:deploy-file " +
-		"-Durl=" + $url + " " +
-		"-DgroupId=com.cleo " +
-		"-DartifactId=" + Pathname.new(file_path).basename.to_s.chomp(".jar") + " " + 
-		"-Dversion=" + $version + " " +
-		"-Dpackaging=jar " +
-		"-Dfile=" + file_path + " " +
-		"-DgeneratePom-true " +
-		"-DrepositoryId=cleo_repo")
+  system(
+    "mvn deploy:deploy-file " +
+    "-Durl=" + $url + " " +
+    "-DgroupId=com.cleo " +
+    "-DartifactId=" + Pathname.new(file_path).basename.to_s.chomp(".jar") + " " + 
+    "-Dversion=" + $version + " " +
+    "-Dpackaging=jar " +
+    "-Dfile=" + file_path + " " +
+    "-DgeneratePom-true " +
+    "-DrepositoryId=cleo_repo")
 end
 
 def print_error_message
@@ -27,29 +27,29 @@ def print_error_message
 end
 
 def run
-	Dir[$directory + "*"].each { |file|
-	  if(file.end_with? ".jar")
-	  	do_mvn(file)
+  Dir[$directory + "*"].each { |file|
+    if(file.end_with? ".jar")
+      do_mvn(file)
 	  elsif(File.directory?(file) && !file.end_with?("secureshare"))
-	  	Dir[file + "/*"].each { |sub_file|
-	  		if(sub_file.end_with? ".jar")
-	  			do_mvn(sub_file)
-	  		end
-	  	}
-	  end
-	}
+      Dir[file + "/*"].each { |sub_file|
+        if(sub_file.end_with? ".jar")
+          do_mvn(sub_file)
+        end
+      }
+    end
+  }
 end
 
 if(ARGV[0] == nil || ARGV[1] == nil || ARGV[2] == nil)
-	print_error_message()
+  print_error_message()
 else
-	$directory = ARGV[0]
-	$url       = ARGV[1]
-	$version   = ARGV[2]
+  $directory = ARGV[0]
+  $url       = ARGV[1]
+  $version   = ARGV[2]
 
-	if(!$directory.end_with?("/"))
-		$directory += "/"
-	end
+  if(!$directory.end_with?("/"))
+    $directory += "/"
+  end
 
-	run()
+  run()
 end
