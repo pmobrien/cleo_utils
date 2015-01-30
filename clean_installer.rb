@@ -4,7 +4,7 @@ require "mysql2"
 def run
   @distro = File.read("/etc/issue")
 
-  if(distro.include?("Ubuntu"))
+  if(distro.include?("Ubuntu") || distro.include?("Red Hat"))
     system("sudo dpkg -r couchbase-server")
     system("sudo rm -rf /opt/couchbase")
   elsif(distro.include?("CentOS"))
