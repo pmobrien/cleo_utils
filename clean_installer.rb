@@ -7,11 +7,11 @@ def remove_couchbase
 
   if(@distro.include?("Ubuntu") || @distro.include?("Red Hat"))
     system("sudo dpkg -r couchbase-server")
-    system("sudo rm -rf /opt/couchbase")
   elsif(@distro.include?("CentOS"))
     system("sudo rpm -e couchbase-server")
-    system("sudo rm -rf /opt/couchbase")
   end
+
+  system("sudo rm -rf /opt/couchbase")
 end
 
 def remove_vltrader
