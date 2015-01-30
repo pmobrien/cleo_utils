@@ -2,8 +2,15 @@ require "fileutils"
 require "mysql2"
 
 def run
-  system("sudo dpkg -r couchbase-server")
-  system("sudo rm -rf /opt/couchbase")
+  @distro = File.read("/etc/issue")
+
+  if(distro.include?("Ubuntu"))
+    system("sudo dpkg -r couchbase-server")
+    system("sudo rm -rf /opt/couchbase")
+  elsif(distro.include?("CentOS"))
+    system("sudo rpm -e couchbase-server")
+    system("sudo rm -rf /opt/couchbase")
+  end
 
   FileUtils.rm_rf($directory + "unifyrepo")
   FileUtils.rm_rf($directory + "vltrader")
