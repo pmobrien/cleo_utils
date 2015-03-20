@@ -13,7 +13,7 @@ def do_mvn(file_path)
     "-Dversion=" + $version + " " +
     "-Dpackaging=jar " +
     "-Dfile=" + file_path + " " +
-    "-DgeneratePom-true " +
+    "-DgeneratePom=true " +
     "-DrepositoryId=cleo_repo")
 end
 
