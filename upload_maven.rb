@@ -30,7 +30,7 @@ def run
   Dir[$directory + "*"].each { |file|
     if(file.end_with? ".jar")
       do_mvn(file)
-	  elsif(File.directory?(file) && !file.end_with?("secureshare"))
+    elsif(File.directory?(file) && !file.end_with?("secureshare"))
       Dir[file + "/*"].each { |sub_file|
         if(sub_file.end_with? ".jar")
           do_mvn(sub_file)
