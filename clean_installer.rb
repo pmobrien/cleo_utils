@@ -5,9 +5,9 @@ require "mysql2"
 def remove_couchbase
   @distro = File.read("/etc/issue")
 
-  if(@distro.include?("Ubuntu") || @distro.include?("Red Hat"))
+  if(@distro.include?("Ubuntu"))
     system("sudo dpkg -r couchbase-server")
-  elsif(@distro.include?("CentOS"))
+  elsif(@distro.include?("CentOS") || @distro.include?("Red Hat"))
     system("sudo rpm -e couchbase-server")
   end
 
