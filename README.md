@@ -22,6 +22,12 @@ http://stackoverflow.com/questions/3608287/error-installing-mysql2-failed-to-bui
   
 the first answer should solve it
 
+If you see an error about missing mkmf, the following command should fix it:
+
+```shell
+sudo apt-get install ruby-dev
+```
+
 ###usage:
   
 ```shell
