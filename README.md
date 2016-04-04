@@ -71,3 +71,4 @@ ruby upload_maven.rb directory url version
 - *url* is the url of the nexus repository you wish to upload to
   
 - *version* is the version that you want these jars to be tagged with (ex: 5.1b2-SNAPSHOT)
+
